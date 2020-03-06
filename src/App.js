@@ -6,19 +6,17 @@ class App extends React.Component {
     count : 0
   }
   add = () => {
-    console.log("add");
+    this.setState(current => ({ count : current.count + 1 }));
   };
   minus = () => {
-    console.log("minus");
+    this.setState(current => ({ count : current.count - 1 }));
   };
   render() {
     return (
       <div>
         <h1>The number is: {this.state.count}</h1>
         <button onClick={this.add}>Add</button>
-        <button onClick={this.minus()}>Minus</button>
-        {/* 이렇게 하면 즉시 실행됨, 위에처럼 하면 클릭했을 때만 실행 */}
-        {/* <button onClick={this.minus()}>Minus</button> */}
+        <button onClick={this.minus}>Minus</button>
       </div>  
     )
   }
