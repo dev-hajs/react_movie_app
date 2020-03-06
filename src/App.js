@@ -1,39 +1,21 @@
 import React from 'react';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("constructor");
-  }
   state = {
-    count : 0
-  }
-  add = () => {
-    this.setState(current => ({ count : current.count + 1 }));
+    isLoading: true,
+    movies: []
   };
-  minus = () => {
-    this.setState(current => ({ count : current.count - 1 }));
-  };
+  // .setState 에 미리 선언하지 않은 state 변수가 들어가면 에러날까요?
+  // No. 그러니까 state 에 미래에서 사용 할 변수를 미리 선언하지 않아도 됩니다.
   componentDidMount() {
-    console.log("Component rendered");
-  }
-  componentDidUpdate() {
-    console.log("I just updated");
-  }
-  componentWillUnmount() {
-    console.log("Goobye, cruel world");
+    setTimeout(() => {
+      this.setState({ isLoading: false, book: true });
+    }, 6000);
   }
   render() {
-    console.log("I'm rendering");
-    return (
-      <div>
-        <h1>The number is: {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>  
-    )
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading..." : "We are ready"}</div>;
   }
-
 }
 
 export default App;
