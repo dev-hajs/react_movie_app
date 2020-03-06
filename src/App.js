@@ -1,16 +1,16 @@
 import React from 'react';
+import axios from "axios";
 
 class App extends React.Component {
   state = {
     isLoading: true,
     movies: []
   };
-  // .setState 에 미리 선언하지 않은 state 변수가 들어가면 에러날까요?
-  // No. 그러니까 state 에 미래에서 사용 할 변수를 미리 선언하지 않아도 됩니다.
+  getMovies = async() => {
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  }
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isLoading: false, book: true });
-    }, 6000);
+    this.getMovies();
   }
   render() {
     const { isLoading } = this.state;
